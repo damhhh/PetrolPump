@@ -32,9 +32,58 @@ class Softwarica_Petrol_pump:
         
         search_btn=Button(F1,text="Search",width=10,bd=7,relief=GROOVE, font="arial 12 bold").grid(row=0, column=6,padx=10,pady=0)
 
-        # Frame2  Snack items
+        # Frame2 items
         F2=LabelFrame(self.root,bd=10,relief=GROOVE,text="Petrol",font=("times new roman",15,"bold"),fg="gold",bg=bg_color)
         F2.place(x=5, y=90,width=325,height=530)
+	
+	
+        #  Variable types
+        self.petrol=IntVar()
+
+
+        f2_lbl1=Label(F2,text="Petrol",font=("times new roman",16,"bold"),bg=bg_color,fg="lightgreen").grid(row=0, column=0,padx=10,pady=7,sticky="w")
+        f2_txt1=Entry(F2,width=8,textvariable=self.petrol,font=("times new roman",16,"bold"),bd=5,relief=SUNKEN).grid(row=0,column=1,padx=10,pady=7)
+
+       
+        # For 
+
+        F3=LabelFrame(self.root,bd=10,relief=GROOVE,text="Kerosene",font=("times new roman",15,"bold"),fg="gold",bg=bg_color)
+        F3.place(x=335, y=90,width=375,height=530)
+
+        self.Kerosene=IntVar()
+
+
+        f3_lbl1=Label(F3,text="Kerosene",font=("times new roman",16,"bold"),bg=bg_color,fg="lightgreen").grid(row=0, column=0,padx=10,pady=7,sticky="w")
+        f3_txt1=Entry(F3,width=8,textvariable=self.Kerosene ,font=("times new roman",16,"bold"),bd=5,relief=SUNKEN).grid(row=0,column=1,padx=10,pady=7)
+	
+# Frame 4 Items
+
+        F4=LabelFrame(self.root,bd=10,relief=GROOVE,text="Diesel",font=("times new roman",15,"bold"),fg="gold",bg=bg_color)
+        F4.place(x=710, y=90,width=325,height=530)
+
+        # Local food items Variable types
+        self.Diesel=IntVar()
+
+
+        f4_lbl1=Label(F4,text="Diesel",font=("times new roman",15,"bold"),bg=bg_color,fg="lightgreen").grid(row=0, column=0,padx=10,pady=7,sticky="w")
+        f4_txt1=Entry(F4,width=8, textvariable=self.Diesel, font=("times new roman",15,"bold"),bd=5,relief=SUNKEN).grid(row=0,column=1,padx=10,pady=7)
+
+
+
+
+# Frame 5 Bill Area
+
+        F5=Frame(self.root, bd=10, relief=GROOVE)
+        F5.place(x=1040, y=90, width=350, height=530)
+        bill_title = Label(F5, text="Bill Area", font="arial 15 bold", bd=7, relief=GROOVE).pack(fill=X)
+
+        scroll_y = Scrollbar(F5, orient=VERTICAL)
+        self.txtarea = Text(F5, yscrollcommand=scroll_y.set)
+        scroll_y.pack(side=RIGHT, fill=Y)
+        scroll_y.config(command=self.txtarea.yview)
+        self.txtarea.pack(fill=BOTH, expand=1)
+
+
 
         
     
