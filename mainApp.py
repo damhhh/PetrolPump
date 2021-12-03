@@ -105,7 +105,79 @@ class Softwarica_Petrol_pump:
 
         Exit_btn=Button(F6, text="Exit",command = self.exit, bg="white", fg="black",width=8,bd=7, font=("arial 14 bold")).grid(row=0, column=6, padx=10, pady=0)
         self.welcome_bill()
+    def total(self):   
+        self.petrol_price=self.petrol.get()*100
+        self.Kerosene_price = self.Kerosene.get()*30
+        self.Diesel_price = self.Diesel.get()*190
 
+    
+        self.total_bill=float(       
+                self.petrol_price +
+                self.Kerosene_price +
+                self.Diesel_price
+        )
+
+        
+        self.total_price.set("NRs. "+str(self.total_bill))
+
+    def welcome_bill(self):
+            self.txtarea.delete('1.0',END)
+            self.txtarea.insert(END,"\tSoftwarica Petrol Pump")
+            self.txtarea.insert(END,f"\n Bill Number:{self.bill.get()} ")
+            self.txtarea.insert(END,f"\n Name: {self.name.get()}") 
+            self.txtarea.insert(END,f"\n Phone Number:{self.phone.get()} ")
+            self.txtarea.insert(END,f"\n =====================================")
+            self.txtarea.insert(END,"\n Fuel\t\tQTY \t\tPrice")
+            self.txtarea.insert(END,f"\n =====================================")
+            
+    
+    def bill_area(self):
+            if self.name.get()== "" or self.phone.get()=="":
+                    messagebox.showerror("Error", "Customer details are must")
+            elif self.total_price.get() =="NRs. 0.0" :
+                    messagebox.showerror("Error", "No items selected")
+            else:
+                self.welcome_bill()
+                if self.petrol.get() !=0:
+                    self.txtarea.insert(END,f"\n Petrol\t\t{self.petrol.get()}\t\t{self.petrol_price}")
+                if self.Kerosene.get()!=0:
+                    self.txtarea.insert(END,f"\n Keroseme\t\t{self.Kerosene.get()}\t\t{self.Kerosene_price}")
+                if self.Diesel.get()!=0:
+                    self.txtarea.insert(END,f"\n Diesel\t\t{self.Diesel.get()}\t\t{self.Diesel_price}")
+                self.txtarea.insert(END,f"\n -------------------------------------")
+                self.txtarea.insert(END,f"\n Total Bill : \t\tRs. {str(self.total_bill)} ")
+                
+                self.db()
+
+    
+    def clear(self):
+        op = messagebox.askyesno("Clear", "Do you want to clear the data? ")
+        if op > 0:
+                self.petrol.set(0)
+                self.Kerosene.set(0)
+                self.Diesel.set(0)
+                self.name.set("") 
+                self.phone.set("")
+                self.total_price.set(0.00)
+            
+    
+    def exit(self):
+        op = messagebox.askyesno("Exit", "Do you want to exit? ")
+        if op > 0:
+            self.root.destroy()
+        else:
+            return
+    
+    
+    
+    def db(self):
+        conn = sqlite3.connect('data.db')
+        c = conn.cursor()
+        c.execute("CREATE TABLE IF NOT EXISTS customer_data(bill TEXT, name TEXT,phone TEXT, total TEXT)")
+        c.execute('INSERT INTO customer_data (bill,name,phone,total) VALUES (?,?,?,?)', (self.bill.get(), self.name.get(),self.phone.get(), self.total_price.get()))
+        conn.commit()
+        conn.close()
+        
 
         
     
