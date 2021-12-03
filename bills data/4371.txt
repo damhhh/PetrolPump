@@ -1,0 +1,11 @@
+	Softwarica Canteen Bill
+ Bill Number:4371 
+ Name: hello
+ Phone Number:9843335585 
+ =====================================
+ Products		QTY 		Price
+ =====================================
+ Orange Juice		1		80
+ Momo		2		240
+ -------------------------------------
+ Total Bill : 		Rs. 320.0 
