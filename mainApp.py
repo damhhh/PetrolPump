@@ -84,6 +84,28 @@ class Softwarica_Petrol_pump:
         self.txtarea.pack(fill=BOTH, expand=1)
 
 
+# Frame6 Bill Menu
+
+        F6 = LabelFrame(self.root, bd=10, relief=GROOVE, text="Bill Menu", font=("times new roman", 15, "bold"), fg="gold",bg=bg_color)
+        F6.place(x=0, y=620, relwidth=1, height=95)
+
+        self.total_price=StringVar()
+
+        total_price_lbl=Label(F6,text="Total price: ",bg=bg_color,fg="white",font=("times new roman",14,"bold")).grid(row=0, column=0, padx=5,pady=1,sticky="w")
+        total_price_txt=Entry(F6, width=18, textvariable=self.total_price, font="arial 15 bold",bd=7,relief=SUNKEN).grid(row=0,column=1,padx=9,pady=1)
+
+        Label(F6, text="        ",bg=bg_color).grid(row=0, column=2, padx=50, pady=0)  # adding empty space
+
+
+        Total_btn= Button(F6,text="Total",command=self.total, bg="white",fg="black",width=8,bd=7,font=("arial 14 bold")).grid(row=0, column=3, padx=10, pady=0)
+        
+        Generate_Bill_btn= Button(F6, text="Generate Bill",command=self.bill_area, bg="white",width=10, fg="black",bd=7, font=("arial 14 bold")).grid(row=0, column=4, padx=10, pady=0)
+
+        Clear_btn = Button(F6, text="Clear",command=self.clear, bg="white", fg="black",width=8,bd=7,  font=("arial 14 bold")).grid(row=0, column=5, padx=10, pady=0)
+
+        Exit_btn=Button(F6, text="Exit",command = self.exit, bg="white", fg="black",width=8,bd=7, font=("arial 14 bold")).grid(row=0, column=6, padx=10, pady=0)
+        self.welcome_bill()
+
 
         
     
